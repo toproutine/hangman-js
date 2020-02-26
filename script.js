@@ -1,13 +1,22 @@
-var passwords = ['accounting', 'balance sheet',  'expenses', 'liabilities', 'cash flows' ];
+var getPass = localStorage.getItem('choice');
+console.log(getPass);
+
 // var passwords = ['abc'];
 var letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g',
                'h', 'i', 'j', 'k', 'l', 'm', 'n',
                'o', 'p', 'q', 'r', 's', 't', 'u',
                'v', 'w', 'x', 'y', 'z' ];
 
+
+var correct = new Audio('../hang/snd/correct.wav');
+var wrong = new Audio('../hang/snd/wrong.wav');
+var won = new Audio('../hang/snd/won.wav');
+var lost = new Audio('../hang/snd/lost.wav');
+
 var tries = 0; // 9 tries
-var getPass = passwords[Math.floor(Math.random()*3)];
+// var getPass = passwords[Math.floor(Math.random()*5)];
 var splitPass = getPass.toString(getPass.split(''));
+console.log(splitPass);
 var hidePass = "";
 
 
@@ -56,20 +65,23 @@ String.prototype.replaceChar = function (position, char) {
 function whichone (elem) {
   grabLetter = elem.textContent;
 
-// change color
+// change color of selected letter
      if (splitPass.indexOf(grabLetter,0) !== -1 ) {
+       correct.play();
           elem.style = "border-color: #90EE90; color: #90EE90;";
       } else {
           elem.style = "border-color: red; color: red;";
 
 // draw hangman image progress
     if (tries < 9) { tries++;
+      wrong.play();
           document.getElementById('hangman').innerHTML = '<img class=\"image\" src=\"img/' + tries + '.png\"/>';
           }
 
 // wrong answer + hide keyboard + reset
     if (tries == 9) { tries++;
-        document.getElementById('letters').innerHTML = '<span class=\"fail\"> Game over! You\'re blown to pieces \;( <br> The password was:' + getPass + '</span> <br> <button class=\"reset\" onclick=\"location.reload()\"> TRY AGAIN </button>';
+      lost.play();
+        document.getElementById('letters').innerHTML = '<h3 > Game over! </h3><p class=\"fail\">You\'re blown to pieces \;( <br> </p> <button class=\"reset\" onclick=\"document.location = \'./index.html\' \"> CATEGORIES </button> <button  class=\"reset\" onclick=\"location.reload()\"> TRY AGAIN </button> ';
         }
     }
 }
@@ -86,7 +98,8 @@ function checkNo (no) {
       }
 // if password correct
       if (getPass == hidePass) {
-          document.getElementById('letters').innerHTML = 'Well done! <br> <button class=\"reset\" onclick=\"location.reload()\"> TRY AGAIN </button> ' ;
+        won.play();
+          document.getElementById('letters').innerHTML = 'Well done! <br> <br> <button class=\"reset\" onclick=\"document.location = \'./index.html\' \"> CATEGORIES </button> ' ;
             }
     }
     pass();
