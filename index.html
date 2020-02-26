@@ -2,28 +2,61 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+        <link rel="stylesheet" href="main.css">
+    <title>Hang Man -  Select Category</title>
 
-    <link rel="stylesheet" href="main.css">
-    <title>Hang Man</title>
+
+
   </head>
-  <body >
+  <body  >
 
 <div id="container">
+<h2>Welcome to the 'Hangman' game.</h2>
+<sub>Guess a word by clicking the right letters. You can only be wrong 9 times before the bomb explodes.</sub>
+<p>Choose a category:</p>
 
-  <div id="password"></div>
+<button id="accounting" > ACCOUNTING </button>
+<button id="animals"    >  ANIMALS   </button>
+<button id="vegetables" > VEGETABLES </button>
+<button id="fruits"     >   FRUITS   </button>
+<button id="crypto"     >   CRYPTO   </button>
 
-    <div id="hangman"><img class="image" src="img/0.png"/></div>
-    <div id="letters"></div>
-    <div style="clear: both;"></div>
 
 </div>
 
 
+<script type="text/javascript">
+
+ // global variables - to access function's output
 
 
+// set onclick evet response
+var selectCat = function ()
+    { let password = [];
+    if (this.id  === "accounting") password = ["balance sheet",  "expenses", "liabilities", "cash flows", "hard cash"];
+    if (this.id  === "animals")    password = ["hummingbird",  "snake", "elephant", "horse" ];
+    if (this.id  === "vegetables") password = ["carrot", "broccoli", "potatoes", "cucumber"  ];
+    if (this.id  === "fruits")     password = ["pomgranade",  "apple", "banana", "pineapple" ];
+    if (this.id  === "crypto")     password = ["bitcoin",  "diamond", "ethereum", "mining" ];
+    // console.log(password);
+    var getPass = password[Math.floor(Math.random()*5)];
+    // console.log(getPass);
+    localStorage.setItem('choice', getPass);
+    window.document.location = './game.html';
+
+}
+
+// set onclick events
+document.getElementById('accounting').onclick = selectCat;
+document.getElementById('animals').onclick = selectCat;
+document.getElementById('vegetables').onclick = selectCat;
+document.getElementById('fruits').onclick = selectCat;
+document.getElementById('crypto').onclick = selectCat;
 
 
+    </script>
 
   </body>
-      <script src="script.js" charset="utf-8"></script>
+
+
 </html>
