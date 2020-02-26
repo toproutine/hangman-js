@@ -2,8 +2,28 @@ body {
 
   background-color: #323232;
   color: white;
-  font-family: sans-serif;
+  font-family: "Comic Sans MS", cursive, sans-serif;
 }
+
+/* Selection */
+
+button {
+width: 100%;
+margin-bottom: 1em;
+border-radius:25px;
+color: white;
+background-color: navy;
+cursor: pointer;
+}
+button:hover {
+  color: blue;
+  background-color: lightblue;
+
+}
+
+
+
+/* The Game */
 
 #container {
 width: 300px;
@@ -76,9 +96,9 @@ margin: 0.5px;
 
 .reset {
 font-size: 6px!important;
-background-color: lightgreen;
-border:1px!important;
-border-radius: 5px;
+background-color: navy;
+color:white;
+border-radius: 25px;
 cursor: pointer;
 /* padding: 2px 2px 2px 2px; */
 /* text-decoration: none; */
@@ -87,6 +107,6 @@ margin-right: auto;
 }
 
 .reset:hover {
-  color: lightgreen;
-  background-color: white;
+  color: blue;
+  background-color: lightblue;
 }
